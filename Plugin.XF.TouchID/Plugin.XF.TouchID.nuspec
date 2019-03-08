@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Plugin.XF.TouchID</id>
+    <version>1.0.2</version>
+    <title>Plugin.XF.TouchID</title>
+    <authors>Jimmy Pun</authors>
+    <owners>Jimmy Pun</owners>
+    <licenseUrl>https://github.com/JimmyPun610/Plugin.XFLogger</licenseUrl>
+    <projectUrl>https://github.com/JimmyPun610/Plugin.XFLogger</projectUrl>
+    <iconUrl>https://banner2.kisspng.com/20180713/olo/kisspng-nuget-net-framework-package-manager-software-repo-nuget-5b487dc3ba81a7.452233091531477443764.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This is a library which doing logging feature in Xamarin Forms(iOS and Android only)</description>
+    <releaseNotes>
+		1.0.2 : Enhance error handling in Logger
+	</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Xamarin.Forms Log Plugin.XFLogger Plugin</tags>
+  </metadata>
+  <!-- Insert below <metadata> element -->
+<files>
+    <!-- Cross-platform reference assemblies -->
+    <file src="Plugin.XF.TouchID\bin\Debug\*.dll" target="lib\netstandard2.0" />
+    <file src="Plugin.XF.TouchID.Abstractions\bin\Debug\*.dll" target="lib\netstandard2.0" />
+    <file src="Plugin.XF.TouchID.iOS\bin\Debug\*.dll" target="lib\xamarin.ios10" />
+	<file src="Plugin.XF.TouchID.Droid\bin\Debug\*.dll" target="lib\monoandroid81" />
+</files>
+</package>

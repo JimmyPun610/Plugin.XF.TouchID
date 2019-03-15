@@ -24,7 +24,8 @@ namespace Sample.App.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-            Plugin.XF.TouchID.CrossTouchID.Current.Init();
+            Plugin.XF.TouchID.iOS.Configuration.DefaultAuthenticationMessage = "Set the default authenticate message";
+            Plugin.XF.TouchID.iOS.Configuration.DefaultFailAttemptNumberExceededMsg = "Set the default failed attempt exceed msg";
             return base.FinishedLaunching(app, options);
         }
     }

@@ -24,10 +24,7 @@ namespace Plugin.XF.TouchID
 
         }
         Android.Support.V4.OS.CancellationSignal cancellationSignal = new Android.Support.V4.OS.CancellationSignal();
-        public override void Init()
-        {
-       
-        }
+
         public override bool IsHardwareDetected()
         {
             FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.From(Android.App.Application.Context);

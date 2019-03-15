@@ -18,7 +18,10 @@ namespace Plugin.XF.TouchID.Abstractions
         public Action SuccessAction;
         public Action FailedAction;
         public Action ErrorAction;
-               /// <summary>
+
+
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="descrptionMessage">Will show on the touch ID authenticate dialog</param>
@@ -35,10 +38,7 @@ namespace Plugin.XF.TouchID.Abstractions
             throw new NotImplementedException();
         }
 
-        public virtual void Init()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public virtual bool IsDeviceSecured()
         {

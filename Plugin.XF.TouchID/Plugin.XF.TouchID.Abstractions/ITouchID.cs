@@ -16,7 +16,6 @@ namespace Plugin.XF.TouchID.Abstractions
     }
     public interface ITouchID
     {
-        void Init();
         bool IsHardwareDetected();
         bool IsDeviceSecured();
         bool IsFingerPrintEnrolled();

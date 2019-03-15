@@ -18,10 +18,6 @@ namespace Plugin.XF.TouchID
 
         }
         LAContext _context;
-        public override void Init()
-        {
-          
-        }
         /// <summary>
         /// 
         /// </summary>
@@ -37,7 +33,7 @@ namespace Plugin.XF.TouchID
             {
  
                 if (string.IsNullOrWhiteSpace(descrptionMessage))
-                    descrptionMessage = "Please do the authentication for further action";
+                    descrptionMessage = iOS.Configuration.DefaultAuthenticationMessage;
                 Tuple<bool, NSError> result = await _context.EvaluatePolicyAsync(LAPolicy.DeviceOwnerAuthentication, descrptionMessage);
                 bool success = result.Item1;
                 NSError error = result.Item2;
@@ -45,28 +41,27 @@ namespace Plugin.XF.TouchID
                     successAction?.Invoke();
                 else
                 {
-                    if(error.LocalizedDescription == "Canceled by user.")
-                        return;
-                    if (error.LocalizedDescription == "Fallback authentication mechanism selected.")
+                    if(error.Code == -2)
                     {
-                        result = await _context.EvaluatePolicyAsync(LAPolicy.DeviceOwnerAuthentication, descrptionMessage);
-                        if (result.Item1)
-                            successAction?.Invoke();
+                        //User cancel
+                        return;
                     }
+                        
+                    //if (error.LocalizedDescription == "Fallback authentication mechanism selected.")
+                    //{
+                    //    var s = error.Code;
+                    //    result = await _context.EvaluatePolicyAsync(LAPolicy.DeviceOwnerAuthentication, descrptionMessage);
+                    //    if (result.Item1)
+                    //        successAction?.Invoke();
+                    //}
                 }
             }
             else
             {
                 
-                if(AuthError.Code == -8)
-                {
-                    //"Biometry is locked out"
-                    
-                }
-
                 _context.InvokeOnMainThread(async () =>
                 {
-                    var result = await _context.EvaluatePolicyAsync(LAPolicy.DeviceOwnerAuthentication, "1213");
+                    var result = await _context.EvaluatePolicyAsync(LAPolicy.DeviceOwnerAuthentication, iOS.Configuration.DefaultFailAttemptNumberExceededMsg);
                     if (result.Item1)
                         successAction?.Invoke();
                 });

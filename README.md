@@ -16,6 +16,7 @@ Android version is pending the development
 
 
 # Use in Xamarin Forms
+- iOS will only need the successAction and descriptionMessage.
 ```C#
  Plugin.XF.TouchID.CrossTouchID.Current.Authenticate(descrptionMessage: "Please do the authentication",
      successAction: () => { DisplayAlert("TouchID result", "Success", "Great"); },

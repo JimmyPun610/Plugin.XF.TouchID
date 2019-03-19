@@ -61,7 +61,6 @@ namespace Plugin.XF.TouchID.Droid.Helper
             {
                 Log.Info("Fingerprint", "Success");
                 MessagingCenter.Send<string, string>(TouchID.Abstractions.TouchID.FingerprintAuthentication, TouchID.Abstractions.TouchID.Authentication, Abstractions.TouchID.Success);
-
             }
 
         }

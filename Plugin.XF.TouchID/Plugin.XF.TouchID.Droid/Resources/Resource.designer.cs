@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Plugin.XF.TouchID.Droid.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Plugin.XF.TouchID.Resource", IsApplication=false)]
 
-namespace Plugin.XF.TouchID.Droid
+namespace Plugin.XF.TouchID
 {
 	
 	

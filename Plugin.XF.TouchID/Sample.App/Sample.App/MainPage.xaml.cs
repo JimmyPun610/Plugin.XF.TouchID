@@ -16,11 +16,30 @@ namespace Sample.App
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Plugin.XF.TouchID.CrossTouchID.Current.Authenticate(descrptionMessage: "",
+            Plugin.XF.TouchID.CrossTouchID.Current.Authenticate(descrptionMessage: "Please do the authentication for further action",
                 successAction: () => { DisplayAlert("TouchID result", "Success", "Great"); },
                 failedAction: () => { DisplayAlert("TouchID result", "Fail", "Try again"); },
                 errorAction: () => { DisplayAlert("TouchID result", "Fail too many times", "Oh no"); }
             );
+            //var canDo = Plugin.XF.TouchID.CrossTouchID.Current.IsFingerprintAuthenticationPossible();
+            //switch (canDo)
+            //{
+            //    case Plugin.XF.TouchID.Abstractions.TouchIDAvailabilities.Support:
+            //        {
+            //            Plugin.XF.TouchID.CrossTouchID.Current.Authenticate(descrptionMessage: "",
+            //    successAction: () => { DisplayAlert("TouchID result", "Success", "Great"); },
+            //    failedAction: () => { DisplayAlert("TouchID result", "Fail", "Try again"); },
+            //    errorAction: () => { DisplayAlert("TouchID result", "Fail too many times", "Oh no"); }
+            //);
+            //            break;
+            //        }
+            //    default:
+            //        Plugin.XF.TouchID.CrossTouchID.Current
+            //            .PromptSecuritySettings();
+            //        break;
+            //}
+
+
         }
 
     }

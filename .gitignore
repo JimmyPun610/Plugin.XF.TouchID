@@ -1,0 +1,6 @@
+bin
+obj
+.vs
+*.nupkg
+/Plugin.XF.TouchID/nuget.exe
+packages

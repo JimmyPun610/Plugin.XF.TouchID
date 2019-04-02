@@ -66,6 +66,7 @@
     <Compile Include="BiometricAuthenticationPopup.xaml.cs">
       <DependentUpon>BiometricAuthenticationPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="ITouchID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TouchID.cs" />

@@ -2,5 +2,6 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SelectedDevice>HTC U11 plus</SelectedDevice>
+    <DefaultDevice>VisualStudio_android-23_arm_phone</DefaultDevice>
   </PropertyGroup>
 </Project>

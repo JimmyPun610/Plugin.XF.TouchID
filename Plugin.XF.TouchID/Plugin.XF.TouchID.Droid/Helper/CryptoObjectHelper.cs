@@ -70,11 +70,13 @@ namespace Plugin.XF.TouchID.Droid.Helper
         IKey GetKey()
         {
             IKey secretKey;
-            if (!_keystore.IsKeyEntry(KEY_NAME))
+            try
+            {
+                secretKey = _keystore.GetKey(KEY_NAME, null);
+            }catch(Exception ex)
             {
                 CreateKey();
             }
-
             secretKey = _keystore.GetKey(KEY_NAME, null);
             return secretKey;
         }

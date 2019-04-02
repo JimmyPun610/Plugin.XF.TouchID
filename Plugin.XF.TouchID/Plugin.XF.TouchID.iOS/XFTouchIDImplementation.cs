@@ -23,9 +23,7 @@ namespace Plugin.XF.TouchID
         /// </summary>
         /// <param name="descrptionMessage">Will show on the touch ID authenticate dialog</param>
         /// <param name="successAction">Action will take if touch ID correct</param>
-        /// <param name="failedAction">Action for touch ID not correct, No use in iOS generally</param>
-        /// <param name="errorAction">Action for touch ID not correct many times, No use in iOS generally</param>
-        public override async Task Authenticate(string descrptionMessage, Action successAction = null, Action failedAction = null, Action errorAction = null)
+        public override async Task Authenticate(string descrptionMessage, Action successAction = null)
         {
             NSError AuthError;
             _context = new LAContext();
@@ -70,9 +68,9 @@ namespace Plugin.XF.TouchID
             }
         }
 
-        public override void CancelCurrentAuthentication()
+        public override void PromptPasscodeAuth()
         {
-
+            
         }
 
         public override bool IsDeviceSecured()

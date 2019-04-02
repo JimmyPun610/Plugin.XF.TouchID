@@ -16,29 +16,23 @@ namespace Plugin.XF.TouchID.Abstractions
 
 
         public Action SuccessAction;
-        public Action FailedAction;
-        public Action ErrorAction;
-
-
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="descrptionMessage">Will show on the touch ID authenticate dialog</param>
         /// <param name="successAction">Action will take if touch ID correct</param>
-        /// <param name="failedAction">Action for touch ID not correct, No use in iOS generally</param>
-        /// <param name="errorAction">Action for touch ID not correct many times, No use in iOS generally</param>
-        public virtual async Task Authenticate(string descrptionMessage, Action successAction = null, Action failedAction = null, Action errorAction = null)
+        public virtual async Task Authenticate(string descrptionMessage, Action successAction = null)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void CancelCurrentAuthentication()
+        public virtual void PromptKeyguardManagerAuth()
         {
             throw new NotImplementedException();
+
         }
 
-       
+
 
         public virtual bool IsDeviceSecured()
         {

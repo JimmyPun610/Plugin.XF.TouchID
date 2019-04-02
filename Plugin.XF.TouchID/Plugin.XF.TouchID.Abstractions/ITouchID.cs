@@ -20,10 +20,10 @@ namespace Plugin.XF.TouchID.Abstractions
         bool IsDeviceSecured();
         bool IsFingerPrintEnrolled();
         bool IsPermissionGranted();
-        Task Authenticate(string descrptionMessage, Action successAction = null, Action failedAction = null, Action errorAction = null);
-        void CancelCurrentAuthentication();
+        Task Authenticate(string descrptionMessage, Action successAction = null);
         TouchIDAvailabilities IsFingerprintAuthenticationPossible();
         void PromptSecuritySettings();
+        void PromptKeyguardManagerAuth();
 
     }
 }

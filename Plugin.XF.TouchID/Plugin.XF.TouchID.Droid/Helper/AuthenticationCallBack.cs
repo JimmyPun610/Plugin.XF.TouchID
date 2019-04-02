@@ -60,7 +60,7 @@ namespace Plugin.XF.TouchID.Droid.Helper
             if (isTrusted)
             {
                 Log.Info("Fingerprint", "Success");
-                MessagingCenter.Send<string, string>(TouchID.Abstractions.TouchID.FingerprintAuthentication, TouchID.Abstractions.TouchID.Authentication, Abstractions.TouchID.Success);
+                XFTouchIDImplementation.AuthenticationResult?.Invoke(Abstractions.TouchID.Success);
             }
 
         }
@@ -70,14 +70,14 @@ namespace Plugin.XF.TouchID.Droid.Helper
             // Report the error to the user. Note that if the user canceled the scan,
             // this method will be called and the errMsgId will be FingerprintState.ErrorCanceled.
             Log.Error("Fingerprint", "Error in authentication." + errString + "ID:" + errMsgId);
-            MessagingCenter.Send<string, string>(TouchID.Abstractions.TouchID.FingerprintAuthentication, TouchID.Abstractions.TouchID.Authentication, Abstractions.TouchID.Error);
+            XFTouchIDImplementation.AuthenticationResult?.Invoke(Abstractions.TouchID.Error);
         }
 
         public override void OnAuthenticationFailed()
         {
             // Tell the user that the fingerprint was not recognized.
             Log.Info("Fingerprint", "Fail to authenicate.");
-            MessagingCenter.Send<string, string>(TouchID.Abstractions.TouchID.FingerprintAuthentication, TouchID.Abstractions.TouchID.Authentication, Abstractions.TouchID.Failed);
+            XFTouchIDImplementation.AuthenticationResult?.Invoke(Abstractions.TouchID.Failed);
         }
 
         public override void OnAuthenticationHelp(int helpMsgId, ICharSequence helpString)

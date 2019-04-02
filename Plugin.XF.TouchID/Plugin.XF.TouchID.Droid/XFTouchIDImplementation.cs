@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.Content;
+using Android.Hardware.Fingerprints;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.Content;
@@ -25,6 +26,8 @@ namespace Plugin.XF.TouchID
 
         }
         Android.Support.V4.OS.CancellationSignal cancellationSignal = new Android.Support.V4.OS.CancellationSignal();
+        public static Action<string> AuthenticationResult;
+
 
         public override bool IsHardwareDetected()
         {
@@ -80,62 +83,104 @@ namespace Plugin.XF.TouchID
         /// </summary>
         /// <param name="descrptionMessage">Will show on the touch ID authenticate dialog</param>
         /// <param name="successAction">Action will take if touch ID correct</param>
-        /// <param name="failedAction">Action for touch ID not correct, No use in iOS generally</param>
-        /// <param name="errorAction">Action for touch ID not correct many times, No use in iOS generally</param>
-        public override async Task Authenticate(string descrptionMessage, Action successAction = null, Action failedAction = null, Action errorAction = null)
+        public override async Task Authenticate(string descrptionMessage, Action successAction = null)
         {
-            var popupDialog1 = new Plugin.XF.TouchID.Abstractions.BiometricAuthenticationPopup(Configuration.PromptTitle, descrptionMessage, Configuration.PromptNegativeMessage,
-             () => {
-
+            FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.From(Configuration.Activity);
+            const int flags = 0; /* always zero (0) */
+            CryptoObjectHelper cryptoHelper = new CryptoObjectHelper();
+            // Using the Support Library classes for maximum reach
+            FingerprintManagerCompat fingerPrintManager = FingerprintManagerCompat.From(Configuration.Activity);
+            // AuthCallbacks is a C# class defined elsewhere in code.
+            FingerprintManagerCompat.AuthenticationCallback authenticationCallback = new AuthenticationCallBack();
+            cancellationSignal = new Android.Support.V4.OS.CancellationSignal();
+            SuccessAction = successAction;
+            IMessagingCenter messagingCenter = MessagingCenter.Instance;
+            var popupDialog1 = new Plugin.XF.TouchID.Abstractions.BiometricAuthenticationPopup(Configuration.PromptTitle, descrptionMessage, Configuration.PromptNegativeMessage,Configuration.PromptPositiveMessage,
+             () => 
+             {
+                 //Negative button Action
+                 cancellationSignal.Cancel();
+                 Configuration.PromptNegativeAction?.Invoke();
+             },
+             () =>
+             {
+                 //Positive button Action
+                 cancellationSignal.Cancel();
+                 Configuration.PromptPositiveAction?.Invoke();
              });
-            popupDialog1.ExitAction = () =>
+            popupDialog1.CustomizeUI(Configuration.PopupTitleColor, Configuration.PopupBackgroundColor, Configuration.PopupDescriptionColor, Configuration.PopupNegativeTextColor, Configuration.PopupPositiveTextColor);
+            popupDialog1.ExitAction = async() =>
             {
-                PopupNavigation.Instance.PopAllAsync();
+                if (PopupNavigation.Instance.PopupStack.Count > 0)
+                    await PopupNavigation.Instance.PopAsync();
             };
-            await PopupNavigation.Instance.PushAsync(popupDialog1);
-
-
-            return;
-
-
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
+            AuthenticationResult = null;
+            AuthenticationResult = (arg) =>
             {
-                FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.From(Android.App.Application.Context);
-                const int flags = 0; /* always zero (0) */
-                CryptoObjectHelper cryptoHelper = new CryptoObjectHelper();
-                // Using the Support Library classes for maximum reach
-                FingerprintManagerCompat fingerPrintManager = FingerprintManagerCompat.From(Android.App.Application.Context);
-                // AuthCallbacks is a C# class defined elsewhere in code.
-                FingerprintManagerCompat.AuthenticationCallback authenticationCallback = new AuthenticationCallBack();
-
-                var popupDialog = new Plugin.XF.TouchID.Abstractions.BiometricAuthenticationPopup(Configuration.PromptTitle, descrptionMessage, Configuration.PromptNegativeMessage,
-                    ()=> {
-
-                    });
-
-
-                await PopupNavigation.Instance.PushAsync(popupDialog);
-                MessagingCenter.Subscribe<string, string>(Abstractions.TouchID.FingerprintAuthentication, Abstractions.TouchID.Authentication, (sender, arg) =>
+                string result = arg;
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    string result = arg;
                     if (arg == Abstractions.TouchID.Success)
                     {
+                        if(PopupNavigation.Instance.PopupStack.Count > 0)
+                            await PopupNavigation.Instance.PopAsync();
                         SuccessAction?.Invoke();
+                        cancellationSignal.Cancel();
                     }
                     else if (arg == Abstractions.TouchID.Failed)
                     {
-                        FailedAction?.Invoke();
+                        popupDialog1.PromptFailed(Configuration.FingerprintFailedText);
                     }
                     else
                     {
-                        ErrorAction?.Invoke();
+                        popupDialog1.PromptError(Configuration.FingerprintErrorText);
+                        cancellationSignal.Cancel();
                     }
-                    MessagingCenter.Unsubscribe<string>(Abstractions.TouchID.FingerprintAuthentication, Abstractions.TouchID.Authentication);
                 });
-                cancellationSignal = new Android.Support.V4.OS.CancellationSignal();
-                // Here is where the CryptoObjectHelper builds the CryptoObject. 
-                fingerprintManager.Authenticate(cryptoHelper.BuildCryptoObject(), flags, cancellationSignal, authenticationCallback, null);
-            }
+            };
+            // Here is where the CryptoObjectHelper builds the CryptoObject. 
+            fingerprintManager.Authenticate(cryptoHelper.BuildCryptoObject(), flags, cancellationSignal, authenticationCallback, null);
+            await PopupNavigation.Instance.PushAsync(popupDialog1);
+          
+         
+            //if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
+            //{
+            //    FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.From(Android.App.Application.Context);
+            //    const int flags = 0; /* always zero (0) */
+            //    CryptoObjectHelper cryptoHelper = new CryptoObjectHelper();
+            //    // Using the Support Library classes for maximum reach
+            //    FingerprintManagerCompat fingerPrintManager = FingerprintManagerCompat.From(Android.App.Application.Context);
+            //    // AuthCallbacks is a C# class defined elsewhere in code.
+            //    FingerprintManagerCompat.AuthenticationCallback authenticationCallback = new AuthenticationCallBack();
+
+            //    //var popupDialog = new Plugin.XF.TouchID.Abstractions.BiometricAuthenticationPopup(Configuration.PromptTitle, descrptionMessage, Configuration.PromptNegativeMessage,
+            //    //    ()=> {
+
+            //    //    });
+
+
+            //    //await PopupNavigation.Instance.PushAsync(popupDialog);
+            //    MessagingCenter.Subscribe<string, string>(Abstractions.TouchID.FingerprintAuthentication, Abstractions.TouchID.Authentication, (sender, arg) =>
+            //    {
+            //        string result = arg;
+            //        if (arg == Abstractions.TouchID.Success)
+            //        {
+            //            SuccessAction?.Invoke();
+            //        }
+            //        else if (arg == Abstractions.TouchID.Failed)
+            //        {
+            //            FailedAction?.Invoke();
+            //        }
+            //        else
+            //        {
+            //            ErrorAction?.Invoke();
+            //        }
+            //        MessagingCenter.Unsubscribe<string>(Abstractions.TouchID.FingerprintAuthentication, Abstractions.TouchID.Authentication);
+            //    });
+            //    cancellationSignal = new Android.Support.V4.OS.CancellationSignal();
+            //    // Here is where the CryptoObjectHelper builds the CryptoObject. 
+            //    fingerprintManager.Authenticate(cryptoHelper.BuildCryptoObject(), flags, cancellationSignal, authenticationCallback, null);
+            //}
           
             //if ((int)Build.VERSION.SdkInt >= 28)
             //{
@@ -155,20 +200,18 @@ namespace Plugin.XF.TouchID
             //}
             //else if((int)Build.VERSION.SdkInt >= 23)
             //{
-            //    //Android 6+
-
-                
-
-
-               
+            //    //Android 6+ 
             //}
-
-        
         }
-        public override void CancelCurrentAuthentication()
+        public override void PromptKeyguardManagerAuth()
         {
-            cancellationSignal.Cancel();
-         }
+            KeyguardManager km = (KeyguardManager)Configuration.Activity.GetSystemService(Activity.KeyguardService);
+            if (km.IsKeyguardSecure)
+            {
+                Intent authIntent = km.CreateConfirmDeviceCredentialIntent(Configuration.PasscodeAuthTitle, Configuration.PasscodeAuthDesc);
+                Configuration.Activity.StartActivityForResult(authIntent, Configuration.KeyguardManagerRequestCode);
+            }
+        }
         private bool isAndroidVersionSupport()
         {
             if (Android.OS.Build.VERSION.SdkInt >= BuildVersionCodes.M)
@@ -217,7 +260,6 @@ namespace Plugin.XF.TouchID
         {
             Forms.Context.StartActivity(new Intent(Android.Provider.Settings.ActionSecuritySettings));
         }
-
 
     }
 }

@@ -5,6 +5,7 @@ Please open the sample project for more information
 If you think this is good, please give a star to me.
 
 # Nuget installation
+- Install to your Xamarin Project
 ```
 Install-Package Plugin.XF.TouchID -Version 1.0.0
 ```

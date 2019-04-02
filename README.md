@@ -16,11 +16,21 @@ Android version is pending the development
 
 
 # Use in Xamarin Forms
-- iOS will only need the successAction and descriptionMessage.
+- Check the device availabilities 
+```c#
+//    Support = 0,
+//    DeviceNotSecured = 1,
+//    NotEnrolledFinger = 2,
+//    HardwareNotSupport = 3,
+//    OSVersionNotSupport = 4,
+Plugin.XF.TouchID.Abstractions.TouchIDAvailabilities possible = Plugin.XF.TouchID.CrossTouchID.Current.IsFingerprintAuthenticationPossible();
+```
+- Prompt Security page for user to enroll finger or add passcode
+```c#
+Plugin.XF.TouchID.CrossTouchID.Current.PromptSecuritySettings();
+```
+- Do the authentication
 ```C#
- Plugin.XF.TouchID.CrossTouchID.Current.Authenticate(descrptionMessage: "Please do the authentication",
-     successAction: () => { DisplayAlert("TouchID result", "Success", "Great"); },
-     failedAction: () => { DisplayAlert("TouchID result", "Fail", "Try again"); },
-     errorAction: () => { DisplayAlert("TouchID result", "Fail too many times", "Oh no"); }
- );
+ Plugin.XF.TouchID.CrossTouchID.Current.Authenticate(descrptionMessage: "Please do the authentication for further action",
+                successAction: () => { DisplayAlert("TouchID result", "Success", "Great"); }
 ```

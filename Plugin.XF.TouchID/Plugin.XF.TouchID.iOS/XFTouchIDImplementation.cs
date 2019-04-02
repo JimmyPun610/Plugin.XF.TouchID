@@ -68,11 +68,6 @@ namespace Plugin.XF.TouchID
             }
         }
 
-        public override void PromptPasscodeAuth()
-        {
-            
-        }
-
         public override bool IsDeviceSecured()
         {
             NSError error = null;

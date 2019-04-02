@@ -11,13 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Plugin.XF.TouchID" Version="1.0.0" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.XF.TouchID.Abstractions\Plugin.XF.TouchID.Abstractions.csproj" />
-    <ProjectReference Include="..\..\Plugin.XF.TouchID\Plugin.XF.TouchID.csproj" />
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
 
-namespace Plugin.XF.TouchID
+namespace Plugin.XF.TouchID.Droid
 {
     public class Configuration
     {
@@ -25,6 +25,7 @@ namespace Plugin.XF.TouchID
         public static string FingerprintErrorText = "Too many failed attempts, please wait 30s to retry";
         public static string PasscodeAuthTitle = "Passcode authentication";
         public static string PasscodeAuthDesc = "Please input passcode to continue";
+
         public static Activity Activity { get; set; }
         public const int KeyguardManagerRequestCode = 2034;
 

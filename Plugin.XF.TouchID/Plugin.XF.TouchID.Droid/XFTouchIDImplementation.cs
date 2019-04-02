@@ -85,30 +85,30 @@ namespace Plugin.XF.TouchID
         /// <param name="successAction">Action will take if touch ID correct</param>
         public override async Task Authenticate(string descrptionMessage, Action successAction = null)
         {
-            FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.From(Configuration.Activity);
+            FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.From(Droid.Configuration.Activity);
             const int flags = 0; /* always zero (0) */
             CryptoObjectHelper cryptoHelper = new CryptoObjectHelper();
             // Using the Support Library classes for maximum reach
-            FingerprintManagerCompat fingerPrintManager = FingerprintManagerCompat.From(Configuration.Activity);
+            FingerprintManagerCompat fingerPrintManager = FingerprintManagerCompat.From(Droid.Configuration.Activity);
             // AuthCallbacks is a C# class defined elsewhere in code.
             FingerprintManagerCompat.AuthenticationCallback authenticationCallback = new AuthenticationCallBack();
             cancellationSignal = new Android.Support.V4.OS.CancellationSignal();
             SuccessAction = successAction;
             IMessagingCenter messagingCenter = MessagingCenter.Instance;
-            var popupDialog1 = new Plugin.XF.TouchID.Abstractions.BiometricAuthenticationPopup(Configuration.PromptTitle, descrptionMessage, Configuration.PromptNegativeMessage,Configuration.PromptPositiveMessage,
+            var popupDialog1 = new Plugin.XF.TouchID.Abstractions.BiometricAuthenticationPopup(Droid.Configuration.PromptTitle, descrptionMessage, Droid.Configuration.PromptNegativeMessage, Droid.Configuration.PromptPositiveMessage,
              () => 
              {
                  //Negative button Action
                  cancellationSignal.Cancel();
-                 Configuration.PromptNegativeAction?.Invoke();
+                 Droid.Configuration.PromptNegativeAction?.Invoke();
              },
              () =>
              {
                  //Positive button Action
                  cancellationSignal.Cancel();
-                 Configuration.PromptPositiveAction?.Invoke();
+                 Droid.Configuration.PromptPositiveAction?.Invoke();
              });
-            popupDialog1.CustomizeUI(Configuration.PopupTitleColor, Configuration.PopupBackgroundColor, Configuration.PopupDescriptionColor, Configuration.PopupNegativeTextColor, Configuration.PopupPositiveTextColor);
+            popupDialog1.CustomizeUI(Droid.Configuration.PopupTitleColor, Droid.Configuration.PopupBackgroundColor, Droid.Configuration.PopupDescriptionColor, Droid.Configuration.PopupNegativeTextColor, Droid.Configuration.PopupPositiveTextColor);
             popupDialog1.ExitAction = async() =>
             {
                 if (PopupNavigation.Instance.PopupStack.Count > 0)
@@ -129,11 +129,11 @@ namespace Plugin.XF.TouchID
                     }
                     else if (arg == Abstractions.TouchID.Failed)
                     {
-                        popupDialog1.PromptFailed(Configuration.FingerprintFailedText);
+                        popupDialog1.PromptFailed(Droid.Configuration.FingerprintFailedText);
                     }
                     else
                     {
-                        popupDialog1.PromptError(Configuration.FingerprintErrorText);
+                        popupDialog1.PromptError(Droid.Configuration.FingerprintErrorText);
                         cancellationSignal.Cancel();
                     }
                 });
@@ -205,11 +205,11 @@ namespace Plugin.XF.TouchID
         }
         public override void PromptKeyguardManagerAuth()
         {
-            KeyguardManager km = (KeyguardManager)Configuration.Activity.GetSystemService(Activity.KeyguardService);
+            KeyguardManager km = (KeyguardManager)Droid.Configuration.Activity.GetSystemService(Activity.KeyguardService);
             if (km.IsKeyguardSecure)
             {
-                Intent authIntent = km.CreateConfirmDeviceCredentialIntent(Configuration.PasscodeAuthTitle, Configuration.PasscodeAuthDesc);
-                Configuration.Activity.StartActivityForResult(authIntent, Configuration.KeyguardManagerRequestCode);
+                Intent authIntent = km.CreateConfirmDeviceCredentialIntent(Droid.Configuration.PasscodeAuthTitle, Droid.Configuration.PasscodeAuthDesc);
+                Droid.Configuration.Activity.StartActivityForResult(authIntent, Droid.Configuration.KeyguardManagerRequestCode);
             }
         }
         private bool isAndroidVersionSupport()

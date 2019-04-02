@@ -21,8 +21,8 @@ namespace Sample.App.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
-            Plugin.XF.TouchID.Configuration.Activity = this;
-            Plugin.XF.TouchID.Configuration.PromptPositiveAction = () => { Plugin.XF.TouchID.CrossTouchID.Current.PromptKeyguardManagerAuth(); };
+            Plugin.XF.TouchID.Droid.Configuration.Activity = this;
+            Plugin.XF.TouchID.Droid.Configuration.PromptPositiveAction = () => { Plugin.XF.TouchID.CrossTouchID.Current.PromptKeyguardManagerAuth(); };
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -44,7 +44,7 @@ namespace Sample.App.Droid
         }
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            Plugin.XF.TouchID.Configuration.OnKeyguardManagerResult(data, requestCode, resultCode);
+            Plugin.XF.TouchID.Droid.Configuration.OnKeyguardManagerResult(data, requestCode, resultCode);
             base.OnActivityResult(requestCode, resultCode, data);
         }
     }

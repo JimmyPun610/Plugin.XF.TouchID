@@ -57,6 +57,12 @@ Install-Package Plugin.XF.TouchID -Version 1.0.0.1
             base.OnActivityResult(requestCode, resultCode, data);
         }
 ```
+2. Manifest.xml add Fingerprint permission
+
+```xml
+<uses-permission android:name="android.permission.USE_FINGERPRINT" />
+```
+
 3. Setting the prompt message style, there are default
 ```C#
    Plugin.XF.TouchID.Droid.Configuration.PromptNegativeMessage = "Cancel";

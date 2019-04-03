@@ -3,8 +3,6 @@ Please open the sample project for more information
 
 Tested on iOS with Touch Id and Android 8.1 with Touch Id
 
-If you think this is good, please give a star to me.
-
 # Nuget installation
 - Install to your Xamarin Project
 ```

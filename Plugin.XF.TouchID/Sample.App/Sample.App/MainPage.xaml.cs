@@ -17,7 +17,7 @@ namespace Sample.App
         private void Button_Clicked(object sender, EventArgs e)
         {
             Plugin.XF.TouchID.Abstractions.TouchIDAvailabilities possible = Plugin.XF.TouchID.CrossTouchID.Current.IsFingerprintAuthenticationPossible();
-            if(possible != Plugin.XF.TouchID.Abstractions.TouchIDAvailabilities.Support)
+            if (possible != Plugin.XF.TouchID.Abstractions.TouchIDAvailabilities.Support)
             {
                 Plugin.XF.TouchID.CrossTouchID.Current.PromptSecuritySettings();
             }
@@ -27,7 +27,7 @@ namespace Sample.App
                 successAction: () => { DisplayAlert("TouchID result", "Success", "Great"); }
             );
             }
-            
+
             //var canDo = Plugin.XF.TouchID.CrossTouchID.Current.IsFingerprintAuthenticationPossible();
             //switch (canDo)
             //{

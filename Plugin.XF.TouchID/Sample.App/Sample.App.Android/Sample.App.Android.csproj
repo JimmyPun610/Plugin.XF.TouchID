@@ -52,6 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Plugin.XF.TouchID">
+      <Version>1.1.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.1.5.188</Version>
     </PackageReference>
@@ -104,14 +107,6 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.XF.TouchID.Abstractions\Plugin.XF.TouchID.Abstractions.csproj">
-      <Project>{0b19658c-d4fb-4ba5-bfc7-6de8ed0ebeac}</Project>
-      <Name>Plugin.XF.TouchID.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Plugin.XF.TouchID.Droid\Plugin.XF.TouchID.Droid.csproj">
-      <Project>{b900588d-a0c3-4653-ad58-f867a65b6382}</Project>
-      <Name>Plugin.XF.TouchID.Droid</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sample.App\Sample.App.csproj">
       <Project>{68A06AC5-C3CA-41E3-8106-1B0BC4F398BE}</Project>
       <Name>Sample.App</Name>

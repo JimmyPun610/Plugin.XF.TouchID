@@ -71,6 +71,7 @@ namespace Plugin.XF.TouchID
         public override bool IsDeviceSecured()
         {
             NSError error = null;
+            _context = new LAContext();
             bool isDeviceSecured = _context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthentication, out error);
             return isDeviceSecured;
         }

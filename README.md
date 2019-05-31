@@ -26,6 +26,8 @@ Install-Package Plugin.XF.TouchID -Version 1.0.0.1
    Xamarin.Essentials.Platform.Init(this, savedInstanceState);
    Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
    Plugin.XF.TouchID.Droid.Configuration.Activity = this;
+   //In case any error in secret key.
+   Plugin.XF.TouchID.Droid.Configuration.IsUseSecretKey = false;
    // Default, press "Use password" => Prompt the android KeygaurdManager auth page, you may change it as you want
    Plugin.XF.TouchID.Droid.Configuration.PromptPositiveAction = () => { Plugin.XF.TouchID.CrossTouchID.Current.PromptKeyguardManagerAuth(); };
    LoadApplication(new App());
@@ -59,6 +61,7 @@ Install-Package Plugin.XF.TouchID -Version 1.0.0.1
 
 ```xml
 <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+<uses-permission android:name="android.permission.USE_BIOMETRIC"/>
 ```
 
 3. Setting the prompt message style, there are default
@@ -71,7 +74,10 @@ Install-Package Plugin.XF.TouchID -Version 1.0.0.1
    Plugin.XF.TouchID.Droid.Configuration.FingerprintErrorText = "Too many failed attempts, please wait 30s to retry";
    Plugin.XF.TouchID.Droid.Configuration.PasscodeAuthTitle = "Passcode authentication";
    Plugin.XF.TouchID.Droid.Configuration.PasscodeAuthDesc = "Please input passcode to continue";
-
+  /// <summary>
+        /// Only set it in Android 9, In case error in secret key, set it to false
+        /// </summary>
+        public static bool IsUseSecretKey = true;
    Plugin.XF.TouchID.Droid.Configuration.PopupTitleColor = Color.Blue;
    Plugin.XF.TouchID.Droid.Configuration.PopupBackgroundColor = Color.White;
    Plugin.XF.TouchID.Droid.Configuration.PopupDescriptionColor = Color.Black;

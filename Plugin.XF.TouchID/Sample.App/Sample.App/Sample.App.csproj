@@ -15,9 +15,4 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.XF.TouchID.Abstractions\Plugin.XF.TouchID.Abstractions.csproj" />
-    <ProjectReference Include="..\..\Plugin.XF.TouchID\Plugin.XF.TouchID.csproj" />
-  </ItemGroup>
 </Project>

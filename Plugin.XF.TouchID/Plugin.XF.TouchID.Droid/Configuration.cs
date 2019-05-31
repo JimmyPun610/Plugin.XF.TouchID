@@ -26,6 +26,11 @@ namespace Plugin.XF.TouchID.Droid
         public static string PasscodeAuthTitle = "Passcode authentication";
         public static string PasscodeAuthDesc = "Please input passcode to continue";
 
+        /// <summary>
+        /// Only set it in Android 9, In case error in secret key, set it to false
+        /// </summary>
+        public static bool IsUseSecretKey = true;
+
         public static Activity Activity { get; set; }
         public const int KeyguardManagerRequestCode = 2034;
 

@@ -12,6 +12,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Hardware.Biometrics;
 
 namespace Plugin.XF.TouchID.Droid.Helper
 {
@@ -31,14 +32,21 @@ namespace Plugin.XF.TouchID.Droid.Helper
                                                 BLOCK_MODE + "/" +
                                                 ENCRYPTION_PADDING;
         readonly KeyStore _keystore;
-
+    
         public CryptoObjectHelper()
         {
+      
             _keystore = KeyStore.GetInstance(KEYSTORE_NAME);
             _keystore.Load(null);
         }
+        public BiometricPrompt.CryptoObject BuildBiometricPromptCryptoObject()
+        {
+            Cipher cipher = CreateCipher();
+            return new BiometricPrompt.CryptoObject(cipher);
+        }
 
-        public FingerprintManagerCompat.CryptoObject BuildCryptoObject()
+
+        public FingerprintManagerCompat.CryptoObject BuildFingerprintManagerCompatCryptoObject()
         {
             Cipher cipher = CreateCipher();
             return new FingerprintManagerCompat.CryptoObject(cipher);
@@ -83,6 +91,10 @@ namespace Plugin.XF.TouchID.Droid.Helper
 
         void CreateKey()
         {
+
+          
+
+
             KeyGenerator keyGen = KeyGenerator.GetInstance(KeyProperties.KeyAlgorithmAes, KEYSTORE_NAME);
             KeyGenParameterSpec keyGenSpec =
                 new KeyGenParameterSpec.Builder(KEY_NAME, KeyStorePurpose.Encrypt | KeyStorePurpose.Decrypt)
@@ -93,5 +105,6 @@ namespace Plugin.XF.TouchID.Droid.Helper
             keyGen.Init(keyGenSpec);
             keyGen.GenerateKey();
         }
+
     }
 }

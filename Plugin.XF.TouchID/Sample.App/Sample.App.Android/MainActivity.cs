@@ -23,6 +23,8 @@ namespace Sample.App.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Plugin.XF.TouchID.Droid.Configuration.Activity = this;
             Plugin.XF.TouchID.Droid.Configuration.PromptPositiveAction = () => { Plugin.XF.TouchID.CrossTouchID.Current.PromptKeyguardManagerAuth(); };
+            //In case any error in secret key.
+            //Plugin.XF.TouchID.Droid.Configuration.IsUseSecretKey = false;
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

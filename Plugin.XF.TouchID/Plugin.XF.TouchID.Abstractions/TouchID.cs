@@ -14,7 +14,6 @@ namespace Plugin.XF.TouchID.Abstractions
         public const string Failed = "Failed";
         public const string Error = "Error";
 
-
         public Action SuccessAction;
         /// <summary>
         /// 

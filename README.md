@@ -7,7 +7,7 @@ Tested on iOS with Touch Id and Android 9 with Touch Id
 - Support on Android 9.0 with default biometric prompt
 - Added configuration "Plugin.XF.TouchID.Droid.Configuration.IsUseSecretKey" to state using Cipher on Android 9, currently seem some error on it, please set it to false if the biometric did not prompt on Android 9
 - Biomteric prompt on Android 9 only support one alternative action, define as PromptPositiveAction and PromptPositiveMessage
-
+- Change Android library target framework to Android 9, please set app project to Android 9 too
 # Nuget installation
 - Install to your Xamarin Project
 ```

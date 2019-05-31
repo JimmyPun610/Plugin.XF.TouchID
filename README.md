@@ -3,6 +3,11 @@ Please open the sample project for more information
 
 Tested on iOS with Touch Id and Android 9 with Touch Id
 
+# News on version 1.1
+- Support on Android 9.0 with default biometric prompt
+- Added configuration "Plugin.XF.TouchID.Droid.Configuration.IsUseSecretKey" to state using Cipher on Android 9, currently seem some error on it, please set it to false if the biometric did not prompt on Android 9
+- Biomteric prompt on Android 9 only support one alternative action, define as PromptPositiveAction and PromptPositiveMessage
+
 # Nuget installation
 - Install to your Xamarin Project
 ```
@@ -61,6 +66,7 @@ Install-Package Plugin.XF.TouchID -Version 1.1.0.3
 
 ```xml
 <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+<!--Android 9-->
 <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
 ```
 
@@ -74,10 +80,10 @@ Install-Package Plugin.XF.TouchID -Version 1.1.0.3
    Plugin.XF.TouchID.Droid.Configuration.FingerprintErrorText = "Too many failed attempts, please wait 30s to retry";
    Plugin.XF.TouchID.Droid.Configuration.PasscodeAuthTitle = "Passcode authentication";
    Plugin.XF.TouchID.Droid.Configuration.PasscodeAuthDesc = "Please input passcode to continue";
-  /// <summary>
-        /// Only set it in Android 9, In case error in secret key, set it to false
-        /// </summary>
-        public static bool IsUseSecretKey = true;
+   /// <summary>
+   /// Only set it in Android 9, In case error in secret key, set it to false
+   /// </summary>
+   public static bool IsUseSecretKey = true;
    Plugin.XF.TouchID.Droid.Configuration.PopupTitleColor = Color.Blue;
    Plugin.XF.TouchID.Droid.Configuration.PopupBackgroundColor = Color.White;
    Plugin.XF.TouchID.Droid.Configuration.PopupDescriptionColor = Color.Black;

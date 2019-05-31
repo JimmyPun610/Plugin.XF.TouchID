@@ -3,8 +3,6 @@ Please open the sample project for more information
 
 Tested on iOS with Touch Id and Android 8.1 with Touch Id
 
-If you think this is good, please give a star to me.
-
 # Nuget installation
 - Install to your Xamarin Project
 ```
@@ -57,6 +55,12 @@ Install-Package Plugin.XF.TouchID -Version 1.0.0.1
             base.OnActivityResult(requestCode, resultCode, data);
         }
 ```
+2. Manifest.xml add Fingerprint permission
+
+```xml
+<uses-permission android:name="android.permission.USE_FINGERPRINT" />
+```
+
 3. Setting the prompt message style, there are default
 ```C#
    Plugin.XF.TouchID.Droid.Configuration.PromptNegativeMessage = "Cancel";

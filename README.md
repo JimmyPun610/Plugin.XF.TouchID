@@ -23,7 +23,7 @@ Install-Package Plugin.XF.TouchID -Version 1.1.0.4
    Pugin.XF.TouchID.iOS.Configuration.DefaultFailAttemptNumberExceededMsg = "Set the default failed attempt exceed msg";
    return base.FinishedLaunching(app, options);
 ```
-![iOS screenshots](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOS.jpg?raw=true){: style="height:300px;}
+<img src="(https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOS.jpg?raw=true" height="300">
 # Android Guide
 1. In MainActivity
 ```C#
@@ -90,8 +90,8 @@ Install-Package Plugin.XF.TouchID -Version 1.1.0.4
    Plugin.XF.TouchID.Droid.Configuration.PopupNegativeTextColor = Color.Red;
    Plugin.XF.TouchID.Droid.Configuration.PopupPositiveTextColor = Color.Black;
 ```
-![Android 6](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true){: style="height:300px;}
-![Android 9](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true){: style="height:300px;}
+<https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true" height="300">
+<https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true" height="300">
 # Use in Xamarin Forms
 - Check the device availabilities 
 ```c#

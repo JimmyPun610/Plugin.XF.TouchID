@@ -23,7 +23,7 @@ Install-Package Plugin.XF.TouchID -Version 1.1.0.4
    Pugin.XF.TouchID.iOS.Configuration.DefaultFailAttemptNumberExceededMsg = "Set the default failed attempt exceed msg";
    return base.FinishedLaunching(app, options);
 ```
-2. In your plist, add face id permission request
+2. In your info.plist, add face id permission request
 ```
 <key>NSFaceIDUsageDescription</key>
 <string>Need your face to unlock secrets!</string>

@@ -3,6 +3,9 @@ Please open the sample project for more information
 
 Tested on iOS with Touch Id and Android 9 with Touch Id
 
+# News on version 1.2
+- Fix iOS bug in checking hardware
+
 # News on version 1.1
 - Support on Android 9.0 with default biometric prompt
 - Added configuration "Plugin.XF.TouchID.Droid.Configuration.IsUseSecretKey" to state using Cipher on Android 9, currently seem some error on it, please set it to false if the biometric did not prompt on Android 9

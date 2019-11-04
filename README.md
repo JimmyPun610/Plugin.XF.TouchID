@@ -11,7 +11,7 @@ Tested on iOS with Touch Id and Android 9 with Touch Id
 # Nuget installation
 - Install to your Xamarin Project
 ```
-Install-Package Plugin.XF.TouchID -Version 1.1.0.4
+Install-Package Plugin.XF.TouchID -Version 1.2.0.4
 ```
 
 # iOS Guide

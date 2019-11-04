@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Foundation;
 using LocalAuthentication;
@@ -32,7 +33,7 @@ namespace Plugin.XF.TouchID
  
                 if (string.IsNullOrWhiteSpace(descrptionMessage))
                     descrptionMessage = iOS.Configuration.DefaultAuthenticationMessage;
-                Tuple<bool, NSError> result = await _context.EvaluatePolicyAsync(LAPolicy.DeviceOwnerAuthentication, descrptionMessage);
+                Tuple<bool, NSError> result = await _context.EvaluatePolicyAsync(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, descrptionMessage);
                 bool success = result.Item1;
                 NSError error = result.Item2;
                 if (result.Item1 == true)
@@ -139,9 +140,11 @@ namespace Plugin.XF.TouchID
             }
             else if (deviceVersion.ToLower().Contains("iphone"))
             {
-                string[] versionName = deviceVersion.Split(',');
-                var charArray = versionName.FirstOrDefault().ToCharArray();
-                int versionNumber = int.Parse(charArray[charArray.Length - 1].ToString());
+                Regex regex = new System.Text.RegularExpressions.Regex("(.[1-9]),");
+                string versionNumberStr = regex.Match(DeviceInfo.Model).Groups.LastOrDefault()?.Value;
+                double versionNumber = 0;
+                if (!string.IsNullOrWhiteSpace(versionNumberStr))
+                    double.TryParse(versionNumberStr, out versionNumber);
                 if (versionNumber <= 5)
                     return false;
             }

@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Plugin.XF.TouchID</id>
-    <version>1.1.0.4</version>
+    <version>1.2.0.4</version>
     <title>Plugin.XF.TouchID</title>
     <authors>Jimmy Pun</authors>
     <owners>Jimmy Pun</owners>
@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This is a library to implement biometric id feature in Xamarin Forms(iOS and Android only)</description>
     <releaseNotes>
-		1.1.0.4 : Support on Android 9
+		1.2.0.4 : Support of FaceID and iOS 13
 	</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>Xamarin.Forms Fingerprint TouchID BiometricID</tags>

@@ -18,7 +18,7 @@ Install-Package Plugin.XF.TouchID
 ```
 
 # iOS Guide
-1. Setting the prompt message first, there are default messages in English only.
+1. In AppDelegate.cs
 ```C#
    global::Xamarin.Forms.Forms.Init();
    LoadApplication(new App());

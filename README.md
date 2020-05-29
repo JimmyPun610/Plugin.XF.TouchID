@@ -42,8 +42,11 @@ Install-Package Plugin.XF.TouchID
 		</td>
 	</tr>
 </table>
+
 # Android Guide
+
 1. Set TargetFramework as Android10.0 (Q) API Level 29
+
 2. In MainActivity
 ```C#
    global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -55,6 +58,7 @@ Install-Package Plugin.XF.TouchID
    //Plugin.XF.TouchID.TouchID.Init(this);
    LoadApplication(new App());
 ```
+
 ```C#
    protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
    {
@@ -62,6 +66,7 @@ Install-Package Plugin.XF.TouchID
         base.OnActivityResult(requestCode, resultCode, data);
    }
 ```
+
 3. Manifest.xml add Fingerprint permission
 ```xml
 <uses-permission android:name="android.permission.USE_FINGERPRINT" />

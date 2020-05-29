@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="fill_horizontal"
+    android:orientation="vertical">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingStart="16dp"
+      android:paddingEnd="16dp"
+      android:paddingTop="16dp"
+      android:paddingBottom="16dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/fingerprint_dialog_title_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/fingerprint_dialog_message_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:id="@+id/fingerprint_status_panel_default"
+		android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+		<ImageView
+			   android:id="@+id/fingerprint_icon"
+			   android:layout_width="wrap_content"
+			   android:layout_height="wrap_content"
+			   android:layout_alignParentStart="true"
+			   android:layout_below="@+id/fingerprint_dialog_message_default"
+			   android:layout_gravity="center_vertical"
+			   android:src="@drawable/ic_fingerprint"/>
+   
+
+      <android.support.v7.widget.AppCompatTextView
+          android:id="@+id/fingerprint_dialog_status_default"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+		  android:textColor="?android:textColorHint"
+          android:layout_marginStart="16dp"
+          android:textAppearance="@android:style/TextAppearance.Material.Body1"/>
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingStart="8dp"
+      android:paddingEnd="8dp"
+      android:paddingTop="8dp"
+      android:paddingBottom="8dp">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/fingerprint_dialog_alternative_default"
+        style="?attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:gravity="center_vertical"
+		android:textAllCaps="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+		android:layout_alignParentRight="true"
+        android:layout_marginEnd="8dp"/>
+  </RelativeLayout>
+
+</LinearLayout>

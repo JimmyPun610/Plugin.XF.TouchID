@@ -1,0 +1,86 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
+  <PropertyGroup>
+    <!--Update with your target such as: Xamarin.iOS10 or MonoAndroid80 or Xamarin.Mac20-->
+    <TargetFrameworks>Xamarin.iOS10;MonoAndroid10.0;netstandard2.0</TargetFrameworks>
+
+    <!--Assembly and Namespace info -->
+    <AssemblyName>Plugin.XF.TouchID</AssemblyName>
+    <RootNamespace>Plugin.XF.TouchID</RootNamespace>
+
+    <Product></Product>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+    <Version>2.0.0.0</Version>
+    <NeutralLanguage>en</NeutralLanguage>
+
+
+    <!--Don't auto add files for me, I will tell you -->
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <!-- Helper to add defines-->
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+
+    <!--Assembly and Namespace info -->
+
+    <!--Version of C# to use -->
+    <LangVersion>default</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Jimmy Pun</Authors>
+    <Description>This is the library for Xamarin Form to use Biometric ID to do the local authentication</Description>
+    <PackageIconUrl>https://banner2.kisspng.com/20180713/olo/kisspng-nuget-net-framework-package-manager-software-repo-nuget-5b487dc3ba81a7.452233091531477443764.jpg</PackageIconUrl>
+    <RepositoryUrl>https://github.com/JimmyPun610/Plugin.XF.TouchID</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/JimmyPun610/Plugin.XF.TouchID</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/JimmyPun610/Plugin.XF.TouchID</PackageLicenseUrl>
+    <RepositoryType>Copyright 2020</RepositoryType>
+    <PackageTags>Xamarin.Forms TouchID FaceID Authentication Biometric</PackageTags>
+    <PackageReleaseNotes>1. Remove Xamarin Form Dependency
+2. Add Support to Android 10
+3. Android target framework change to 10</PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <!-- Define what happens on build and release -->
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <DebugType>pdbonly</DebugType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- If we want a nuget package add this
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+     -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- This None is here so the conditionally included files show up in the Solution Explorer -->
+    <None Include="**\*.cs;**\*.xml;**\*.axml;**\*.png" Exclude="obj\**\*.*;bin\**\*.*;bin;obj" />
+
+    <!-- We will compile anything ending in .shared.cs  You can change this -->
+    <Compile Include="Shared\*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+    <Compile Include="NetStandard\*.cs" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+        
+  </ItemGroup>
+  
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <Compile Include="Android\*.cs" />
+	<Compile Include="Android\**\*.cs" />
+    <AndroidResource Include="Resources\**\*.axml" />
+    <AndroidResource Include="Resources\**\*.xml" />
+    <AndroidResource Include="Resources\**\*.png" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3">
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <Compile Include="iOS\*.cs" />
+  </ItemGroup>
+
+</Project>

@@ -34,7 +34,7 @@ Install-Package Plugin.XF.TouchID
 
 FaceID | TouchID
 ------ | -----
-<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSFace.PNG?raw=true" width="200"> | <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSTouch.png?raw=true" width="200">
+<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Screenshots/iOSFace.PNG?raw=true" width="200"> | <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Screenshots/iOSTouch.png?raw=true" width="200">
 
 ### Android Guide
 
@@ -69,7 +69,7 @@ FaceID | TouchID
 
 Android 6-8 | Android 9+
 ------ | -----
-<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true" width="200"> | <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true" width="200">
+<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Screenshots/Android6.png?raw=true" width="200"> | <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Screenshots/Android9.png?raw=true" width="200">
 
 ### Use in Xamarin Forms
 

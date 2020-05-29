@@ -67,17 +67,9 @@ FaceID | TouchID
 <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
 ```
 
-<table>
-	<tr>
-		<td>
-			<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true" width="200">
-		</td>
-		
-		<td>
-			<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true" width="200">
-		</td>
-	</tr>
-</table>
+Android 6-8 | Android 9+
+------ | -----
+<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true" width="200"> | <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true" width="200">
 
 ## Use in Xamarin Forms
 

@@ -31,8 +31,8 @@ Install-Package Plugin.XF.TouchID
 <key>NSFaceIDUsageDescription</key>
 <string>Need your face to unlock secrets!</string>
 ```
-![](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSFace.jpg?raw=true | width=200)
-![](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSTouch.jpg?raw=true | width=200)
+<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSFace.png?raw=true" width="200">
+<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSTouch.png?raw=true" width="200">
 # Android Guide
 1. Set TargetFramework as Android10.0 (Q) API Level 29
 2. In MainActivity
@@ -59,9 +59,8 @@ Install-Package Plugin.XF.TouchID
 <!--Android 9+-->
 <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
 ```
-
-![](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true | width=200)
-![](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true | width=200)
+<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true" width="200">
+<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true" width="200">
 ## Use in Xamarin Forms
 #### Check the device availabilities 
 ```c#

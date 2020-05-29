@@ -31,6 +31,7 @@ Install-Package Plugin.XF.TouchID
 <key>NSFaceIDUsageDescription</key>
 <string>Need your face to unlock secrets!</string>
 ```
+
 <table>
 	<tr>
 		<td>
@@ -73,6 +74,7 @@ Install-Package Plugin.XF.TouchID
 <!--Android 9+-->
 <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
 ```
+
 <table>
 	<tr>
 		<td>
@@ -80,14 +82,13 @@ Install-Package Plugin.XF.TouchID
 		</td>
 		
 		<td>
-			<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true" width="200">
+			<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true" width="200">
 		</td>
 	</tr>
 </table>
-			
 
-<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true" width="200">
 ## Use in Xamarin Forms
+
 #### Check the device availabilities 
 ```c#
 //    Support = 0,
@@ -97,11 +98,14 @@ Install-Package Plugin.XF.TouchID
 //    OSVersionNotSupport = 4,
    Plugin.XF.TouchID.TouchIDStatus possible = Plugin.XF.TouchID.TouchID.IsFingerprintAuthenticationPossible());
 ```
+
 #### Prompt Security page for user to enroll finger or add passcode
 ```c#
    Plugin.XF.TouchID.TouchID.PromptSecuritySettings();
 ```
+
 #### Do the authentication
+
 ##### Use passcode / pin for alternative authentication (Android only, iOS default allowed)
 ```C#
 	var dialogConfig = new Plugin.XF.TouchID.DialogConfiguration(dialogTitle: "Sign In", //Display in Android only

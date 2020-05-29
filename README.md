@@ -1,20 +1,20 @@
 # Plugin.XF.TouchID
-Please open the sample project for more information
+This project provides a easy way to call biometric authentication (Face / Fingerprint) function in Xamarin Forms
 
-Tested on iOS with Touch Id and Android 9 with Touch Id
+## Support
+#### Android 6 - 10 TouchID (Target API Level 29)
+#### iOS 10+ FaceID and TouchID
 
-# News on version 1.2
-- Fix iOS bug in checking hardware
+## Release notes
+#### Version 2.0
+1. Remove Xamarin Form Dependency
+2. Add Support to Android 10
+3. Android target framework change to 10
 
-# News on version 1.1
-- Support on Android 9.0 with default biometric prompt
-- Added configuration "Plugin.XF.TouchID.Droid.Configuration.IsUseSecretKey" to state using Cipher on Android 9, currently seem some error on it, please set it to false if the biometric did not prompt on Android 9
-- Biomteric prompt on Android 9 only support one alternative action, define as PromptPositiveAction and PromptPositiveMessage
-- Change Android library target framework to Android 9, please set app project to Android 9 too
 # Nuget installation
-- Install to your Xamarin Project
+#### Install to your Xamarin Project
 ```
-Install-Package Plugin.XF.TouchID -Version 1.2.0.4
+Install-Package Plugin.XF.TouchID
 ```
 
 # iOS Guide
@@ -22,8 +22,8 @@ Install-Package Plugin.XF.TouchID -Version 1.2.0.4
 ```C#
    global::Xamarin.Forms.Forms.Init();
    LoadApplication(new App());
-   Plugin.XF.TouchID.iOS.Configuration.DefaultAuthenticationMessage = "Set the default authenticate message";
-   Pugin.XF.TouchID.iOS.Configuration.DefaultFailAttemptNumberExceededMsg = "Set the default failed attempt exceed msg";
+   //Init the library
+   Plugin.XF.TouchID.TouchID.Init();
    return base.FinishedLaunching(app, options);
 ```
 2. In your info.plist, add face id permission request
@@ -33,89 +33,112 @@ Install-Package Plugin.XF.TouchID -Version 1.2.0.4
 ```
 ![](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOS.jpg?raw=true")
 # Android Guide
-1. In MainActivity
+1. Set TargetFramework as Android10.0 (Q) API Level 29
+2. In MainActivity
 ```C#
    global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
    Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-   Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
-   Plugin.XF.TouchID.Droid.Configuration.Activity = this;
-   //In case any error in secret key.
-   Plugin.XF.TouchID.Droid.Configuration.IsUseSecretKey = false;
-   // Default, press "Use password" => Prompt the android KeygaurdManager auth page, you may change it as you want
-   Plugin.XF.TouchID.Droid.Configuration.PromptPositiveAction = () => { Plugin.XF.TouchID.CrossTouchID.Current.PromptKeyguardManagerAuth(); };
+   //Init the library
+   //Use secret key, please use a unique keyname
+   Plugin.XF.TouchID.TouchID.Init(this, "plugin.xf.touchid.fingerprintkey");
+   //If you do not want to use secret key
+   //Plugin.XF.TouchID.TouchID.Init(this);
    LoadApplication(new App());
 ```
-
 ```C#
- public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-        public override void OnBackPressed()
-        {
-            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
-            {
-                // Do something if there are some pages in the `PopupStack`
-            }
-            else
-            {
-                // Do something if there are not any pages in the `PopupStack`
-            }
-        }
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        {
-            Plugin.XF.TouchID.Droid.Configuration.OnKeyguardManagerResult(data, requestCode, resultCode);
-            base.OnActivityResult(requestCode, resultCode, data);
-        }
+   protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+   {
+        Plugin.XF.TouchID.TouchID.OnKeyguardManagerResult(data, requestCode, resultCode);
+        base.OnActivityResult(requestCode, resultCode, data);
+   }
 ```
-2. Manifest.xml add Fingerprint permission
-
+3. Manifest.xml add Fingerprint permission
 ```xml
 <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-<!--Android 9-->
+<!--Android 9+-->
 <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
 ```
 
-3. Setting the prompt message style, there are default
-```C#
-   Plugin.XF.TouchID.Droid.Configuration.PromptNegativeMessage = "Cancel";
-   Plugin.XF.TouchID.Droid.Configuration.PromptPositiveMessage = "Use Password";
-   Plugin.XF.TouchID.Droid.Configuration.PromptTitle = "Biometric Authentication";
-   Plugin.XF.TouchID.Droid.Configuration.DefaultAuthenticationMessage = "Please do the authentication for further action";
-   Plugin.XF.TouchID.Droid.Configuration.FingerprintFailedText = "Please try again";
-   Plugin.XF.TouchID.Droid.Configuration.FingerprintErrorText = "Too many failed attempts, please wait 30s to retry";
-   Plugin.XF.TouchID.Droid.Configuration.PasscodeAuthTitle = "Passcode authentication";
-   Plugin.XF.TouchID.Droid.Configuration.PasscodeAuthDesc = "Please input passcode to continue";
-   /// <summary>
-   /// Only set it in Android 9, In case error in secret key, set it to false
-   /// </summary>
-   public static bool IsUseSecretKey = true;
-   Plugin.XF.TouchID.Droid.Configuration.PopupTitleColor = Color.Blue;
-   Plugin.XF.TouchID.Droid.Configuration.PopupBackgroundColor = Color.White;
-   Plugin.XF.TouchID.Droid.Configuration.PopupDescriptionColor = Color.Black;
-   Plugin.XF.TouchID.Droid.Configuration.PopupNegativeTextColor = Color.Red;
-   Plugin.XF.TouchID.Droid.Configuration.PopupPositiveTextColor = Color.Black;
-```
 ![](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true")
 ![](https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true")
-# Use in Xamarin Forms
-- Check the device availabilities 
+## Use in Xamarin Forms
+#### Check the device availabilities 
 ```c#
 //    Support = 0,
 //    DeviceNotSecured = 1,
 //    NotEnrolledFinger = 2,
 //    HardwareNotSupport = 3,
 //    OSVersionNotSupport = 4,
-   Plugin.XF.TouchID.Abstractions.TouchIDAvailabilities possible = Plugin.XF.TouchID.CrossTouchID.Current.IsFingerprintAuthenticationPossible();
+   Plugin.XF.TouchID.TouchIDStatus possible = Plugin.XF.TouchID.TouchID.IsFingerprintAuthenticationPossible());
 ```
-- Prompt Security page for user to enroll finger or add passcode
+#### Prompt Security page for user to enroll finger or add passcode
 ```c#
-   Plugin.XF.TouchID.CrossTouchID.Current.PromptSecuritySettings();
+   Plugin.XF.TouchID.TouchID.PromptSecuritySettings();
 ```
-- Do the authentication
+#### Do the authentication
+##### Use passcode / pin for alternative authentication (Android only, iOS default allowed)
 ```C#
-   Plugin.XF.TouchID.CrossTouchID.Current.Authenticate(descrptionMessage: "Please do the authentication for further action",
-                successAction: () => { DisplayAlert("TouchID result", "Success", "Great"); }
+	var dialogConfig = new Plugin.XF.TouchID.DialogConfiguration(dialogTitle: "Sign In", //Display in Android only
+                                                                         dialogDescritpion: "Detect you biometic to auth", //Display on Android and iOS(TouchID)
+                                                                         successAction: () =>
+                                                                         {
+                                                                             //Will fired when authentication success
+                                                                             Device.BeginInvokeOnMainThread(() =>
+                                                                             {
+                                                                                 DisplayAlert("Congratulation", "You pass the authentication", "OK");
+                                                                             });
+                                                                         },
+                                                                         alterAuthButtonText: "Use PIN", //Display in Android only
+                                                                         fingerprintDialogConfiguration: new Plugin.XF.TouchID.FingerprintDialogConfiguration
+                                                                         {
+                                                                             //For Android 6-8 only
+                                                                             FingerprintHintString = "Touch Sensor",
+                                                                             FingerprintNotRecoginzedString = "Not regonized"
+                                                                         },
+                                                                         failedAction: () =>
+                                                                         {  
+                                                                             //For Android 6-8 only
+                                                                             Device.BeginInvokeOnMainThread(() =>
+                                                                             {
+                                                                                 DisplayAlert("Alert", "Too many unsuccessful attempt, please try again later", "OK");
+                                                                             });
+                                                                         });
+
+   await Plugin.XF.TouchID.TouchID.Authenticate(dialogConfig);
+```
+##### Use customized action as alternative (Android only, iOS default use password)
+```C#
+  var dialogConfig = new Plugin.XF.TouchID.DialogConfiguration(dialogTitle: "Sign In", //Display in Android only
+                                                                         dialogDescritpion: "Detect you biometic to auth", //Display on Android and iOS(TouchID)
+                                                                         successAction: () =>
+                                                                         {
+                                                                             //Will fired when authentication success
+                                                                             Device.BeginInvokeOnMainThread(() =>
+                                                                             {
+                                                                                 DisplayAlert("Congratulation", "You pass the authentication", "OK");
+                                                                             });
+                                                                         },
+                                                                         customizedAction: new Plugin.XF.TouchID.CustomizedAction("Cancel", () =>
+                                                                         {
+                                                                             //Android Only
+                                                                             Device.BeginInvokeOnMainThread(() =>
+                                                                             {
+                                                                                 DisplayAlert("Alert", "You cancel the authentication", "OK");
+                                                                             });
+                                                                         }),
+                                                                         fingerprintDialogConfiguration: new Plugin.XF.TouchID.FingerprintDialogConfiguration
+                                                                         {
+                                                                             //For Android 6-8 only
+                                                                             FingerprintHintString = "Touch Sensor",
+                                                                             FingerprintNotRecoginzedString = "Not regonized"
+                                                                         },
+                                                                         failedAction: () =>
+                                                                         {
+                                                                             //For Android 6-8 only
+                                                                             Device.BeginInvokeOnMainThread(() =>
+                                                                             {
+                                                                                 DisplayAlert("Alert", "Too many unsuccessful attempt, please try again later", "OK");
+                                                                             });
+                                                                         });
+	await Plugin.XF.TouchID.TouchID.Authenticate(dialogConfig);
 ```

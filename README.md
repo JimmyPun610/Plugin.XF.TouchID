@@ -1,23 +1,23 @@
 # Plugin.XF.TouchID
 This project provides a easy way to call biometric authentication (Face / Fingerprint) function in Xamarin Forms
 
-## Support
+### Support
 #### Android 6 - 10 TouchID (Target API Level 29)
 #### iOS 10+ FaceID and TouchID
 
-## Release notes
+### Release notes
 #### Version 2.0
 1. Remove Xamarin Form Dependency
 2. Add Support to Android 10
 3. Android target framework change to 10
 
-# Nuget installation
+### Nuget installation
 #### Install to your Xamarin Project
 ```
 Install-Package Plugin.XF.TouchID
 ```
 
-# iOS Guide
+### iOS Guide
 1. In AppDelegate.cs
 ```C#
    global::Xamarin.Forms.Forms.Init();
@@ -36,7 +36,7 @@ FaceID | TouchID
 ------ | -----
 <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSFace.PNG?raw=true" width="200"> | <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSTouch.png?raw=true" width="200">
 
-# Android Guide
+### Android Guide
 
 1. Set TargetFramework as Android10.0 (Q) API Level 29
 
@@ -71,7 +71,7 @@ Android 6-8 | Android 9+
 ------ | -----
 <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android6.png?raw=true" width="200"> | <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/Android9.png?raw=true" width="200">
 
-## Use in Xamarin Forms
+### Use in Xamarin Forms
 
 #### Check the device availabilities 
 ```c#

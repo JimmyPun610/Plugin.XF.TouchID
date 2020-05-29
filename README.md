@@ -32,17 +32,9 @@ Install-Package Plugin.XF.TouchID
 <string>Need your face to unlock secrets!</string>
 ```
 
-<table>
-	<tr>
-		<td>
-			<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSFace.PNG?raw=true" width="200">
-		</td>
-		
-		<td>
-			<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSTouch.png?raw=true" width="200">
-		</td>
-	</tr>
-</table>
+FaceID | TouchID
+------ | -----
+<img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSFace.PNG?raw=true" width="200"> | <img src="https://github.com/JimmyPun610/Plugin.XF.TouchID/blob/master/Plugin.XF.TouchID/Screenshots/iOSTouch.png?raw=true" width="200">
 
 # Android Guide
 

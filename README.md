@@ -19,7 +19,7 @@ Install-Package Plugin.XF.TouchID
 
 #### Build Status
 ##### Android [![Build status](https://build.appcenter.ms/v0.1/apps/2aaea9c6-9358-481a-90aa-8d1f8cbaf0b7/branches/master/badge)](https://github.com/JimmyPun610/Plugin.XF.TouchID)
-##### iOS [![Build status](https://build.appcenter.ms/v0.1/apps/eb178c96-9250-4851-a39c-c0be77943142/branches/master/badge)](https://github.com/JimmyPun610/Plugin.XF.TouchID)
+##### iOS <img src="https://build.appcenter.ms/v0.1/apps/eb178c96-9250-4851-a39c-c0be77943142/branches/master/badge">
 
 ### iOS Guide
 1. In AppDelegate.cs

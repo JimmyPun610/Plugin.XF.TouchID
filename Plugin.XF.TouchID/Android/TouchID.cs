@@ -125,8 +125,8 @@ namespace Plugin.XF.TouchID
         public static async System.Threading.Tasks.Task Authenticate(DialogConfiguration dialogConfiguration)
         {
 
-
-            if ((int)Build.VERSION.SdkInt >= (int)BuildVersionCodes.Q)
+            //Android 10+ Q SdkInt 29+
+            if ((int)Build.VERSION.SdkInt >= 29)
             {
                 CancellationSignal BiometricCancellationSignal = new CancellationSignal();
                 //Android 10
@@ -186,7 +186,8 @@ namespace Plugin.XF.TouchID
                     else biometricPrompt.Authenticate(BiometricCancellationSignal, Configuration.CurrentActivity.MainExecutor, authenticationCallback);
                 }
             }
-            else if ((int)Build.VERSION.SdkInt >= (int)BuildVersionCodes.P)
+            //Android 9+ P SdkInt 28
+            else if ((int)Build.VERSION.SdkInt >= 28)
             {
                 //Android 9
                 try
@@ -239,7 +240,8 @@ namespace Plugin.XF.TouchID
                 }
 
             }
-            else if ((int)Build.VERSION.SdkInt >= (int)BuildVersionCodes.M)
+            //Android 6+ to 8.x SdkInt 23
+            else if ((int)Build.VERSION.SdkInt >= 23)
             {
                 //Android 6+ to 8.x
                 FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.From(Configuration.CurrentActivity);
@@ -283,7 +285,8 @@ namespace Plugin.XF.TouchID
         }
         internal static void PromptKeyguardManagerAuth(string title, string desc)
         {
-            if ((int)Build.VERSION.SdkInt < (int)BuildVersionCodes.Q)
+            //BuildVersionCodes.Q Android 10
+            if ((int)Build.VERSION.SdkInt < 29)
             {
                 KeyguardManager km = (KeyguardManager)Configuration.CurrentActivity.GetSystemService(Activity.KeyguardService);
                 if (km.IsKeyguardSecure)
@@ -295,7 +298,8 @@ namespace Plugin.XF.TouchID
         }
         private static bool isAndroidVersionSupport()
         {
-            if (Android.OS.Build.VERSION.SdkInt >= BuildVersionCodes.M)
+            //BuildVersionCodes.M Android 6+
+            if ((int)Android.OS.Build.VERSION.SdkInt >= 23)
             {
                 return true;
             }

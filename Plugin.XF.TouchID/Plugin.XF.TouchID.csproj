@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <!--Update with your target such as: Xamarin.iOS10 or MonoAndroid80 or Xamarin.Mac20-->
-    <TargetFrameworks>Xamarin.iOS10;MonoAndroid10.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>Xamarin.iOS10;MonoAndroid11.0;MonoAndroid10.0;netstandard2.0</TargetFrameworks>
 
     <!--Assembly and Namespace info -->
     <AssemblyName>Plugin.XF.TouchID</AssemblyName>
@@ -11,7 +11,7 @@
     <Product></Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>2.0.0.0</Version>
+    <Version>2.1.0.0</Version>
     <NeutralLanguage>en</NeutralLanguage>
 
 
@@ -19,7 +19,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 
     <!-- Helper to add defines-->
-    <DefineConstants>$(DefineConstants);</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
 
     <!--Assembly and Namespace info -->
 
@@ -35,8 +35,7 @@
     <RepositoryType>Copyright 2020</RepositoryType>
     <PackageTags>Xamarin.Forms TouchID FaceID Authentication Biometric</PackageTags>
     <PackageReleaseNotes>1. Remove Xamarin Form Dependency
-2. Add Support to Android 10
-3. Android target framework change to 10</PackageReleaseNotes>
+2. Add Support to Android 11</PackageReleaseNotes>
 
   </PropertyGroup>
 

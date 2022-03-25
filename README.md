@@ -2,13 +2,12 @@
 This project provides a easy way to call biometric authentication (Face / Fingerprint) function in Xamarin Forms
 
 ### Support
-#### Android 6 - 11 TouchID (Target API Level 30)
+#### Android 6 - 12 TouchID (Target API Level 31)
 #### iOS 10+ FaceID and TouchID
 
 ### Release notes
-#### Version 2.1
-1. Remove Xamarin Form Dependency
-2. Add Support to Android 11
+#### Version 2.2
+1. Add Support to Android 12
 
 ### Nuget installation
 #### Install to your Xamarin Project
